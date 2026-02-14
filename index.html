@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan Shaikh | Cybersecurity Engineer</title>
+    <meta name="description" content="Portfolio of Faizan Shaikh, a Cybersecurity Engineer specializing in Blue Team Operations, SOC Analysis, and Secure Systems.">
+    <meta name="keywords" content="Cybersecurity, SOC Analyst, Blue Team, Faizan Shaikh, Network Security, React, Portfolio">
+    
+    <!-- Open Graph / LinkedIn Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Faizan Shaikh | Cybersecurity Engineer">
+    <meta property="og:description" content="Blue Team Operations, SOC Analysis, and Secure Systems Engineering. View my portfolio.">
+    <meta property="og:image" content="image_5f4977.jpg">
+
+    <!-- Favicon (Terminal Icon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+    
+    <!-- Google Fonts: JetBrains Mono (Code style) and Inter (Clean text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (for layout) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config for Tailwind colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1e1e1e',
+                            light: '#e0e0e0',
+                            accent: '#10b981', // Emerald green
+                            accentDim: 'rgba(16, 185, 129, 0.1)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS for specific hacker effects */
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Scanline effect overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 50%,
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(0, 0, 0, 0.1)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.3;
+        }
+
+        /* Blinking Cursor */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #10b981;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Glitch hover effect for headings */
+        .glitch-hover:hover {
+            text-shadow: 2px 0 #10b981, -2px 0 #ef4444;
+            transition: 0.1s;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+
+        /* Card Hover Glow */
+        .tech-card {
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        .tech-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyber-accent selection:text-black">
+
+    <!-- Subtle Grid Background -->
+    <div class="fixed inset-0 z-[-1] opacity-20" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 30px 30px;"></div>
+    <div class="scanlines"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 top-0 bg-cyber-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-mono text-xl font-bold tracking-tighter text-white hover:text-cyber-accent transition-colors">
+                &lt;FaizanShaikh /&gt;
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-mono text-sm text-gray-400 items-center">
+                <a href="#about" class="hover:text-cyber-accent transition-colors">_about</a>
+                <a href="#skills" class="hover:text-cyber-accent transition-colors">_skills</a>
+                <a href="#projects" class="hover:text-cyber-accent transition-colors">_projects</a>
+                <a href="#certifications" class="hover:text-cyber-accent transition-colors">_certs</a>
+                <a href="#contact" class="hover:text-cyber-accent transition-colors">_contact</a>
+                <!-- Nav Resume Button -->
+                <a href="resume.pdf" target="_blank" class="px-4 py-2 text-xs border border-cyber-accent text-cyber-accent hover:bg-cyber-accent hover:text-black transition-colors rounded-sm">
+                    RESUME.PDF
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white hover:text-cyber-accent">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyber-dark border-b border-gray-800">
+            <div class="flex flex-col px-6 py-4 space-y-4 font-mono text-sm text-gray-400">
+                <a href="#about" class="hover:text-cyber-accent" onclick="toggleMenu()">_about</a>
+                <a href="#skills" class="hover:text-cyber-accent" onclick="toggleMenu()">_skills</a>
+                <a href="#projects" class="hover:text-cyber-accent" onclick="toggleMenu()">_projects</a>
+                <a href="#certifications" class="hover:text-cyber-accent" onclick="toggleMenu()">_certs</a>
+                <a href="#contact" class="hover:text-cyber-accent" onclick="toggleMenu()">_contact</a>
+                <a href="resume.pdf" class="text-cyber-accent font-bold" onclick="toggleMenu()">_download_resume</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Column: Text -->
+            <div class="relative z-10 order-2 md:order-1">
+                <div class="font-mono text-cyber-accent mb-4 text-sm tracking-wider">
+                    // SYSTEM.READY
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+                    Faizan <br>
+                    <span class="text-gray-500">Shaikh.</span>
+                </h1>
+                <div class="h-8 mb-8 font-mono text-lg md:text-xl text-gray-400">
+                    <span id="typewriter"></span><span class="cursor">&nbsp;</span>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-cyber-accent text-black font-mono font-bold hover:bg-white transition-colors rounded-sm">
+                        View Projects
+                    </a>
+                    <a href="resume.pdf" target="_blank" class="px-6 py-3 border border-gray-600 text-gray-300 font-mono hover:border-cyber-accent hover:text-cyber-accent transition-colors rounded-sm flex items-center gap-2">
+                        <i data-lucide="file-down" class="w-4 h-4"></i> Resume
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Profile Photo -->
+            <div class="relative flex justify-center md:justify-end order-1 md:order-2">
+                <!-- Decorative Circle behind -->
+                <div class="absolute inset-0 bg-cyber-accent opacity-10 blur-3xl rounded-full scale-75 animate-pulse"></div>
+                
+                <!-- Image Container -->
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-cyber-accent/30 p-2">
+                    <div class="w-full h-full rounded-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 bg-cyber-gray">
+                        <!-- Instructions: Replace 'profile.jpg' with your actual image file -->
+                        <img src="profile.jpeg" alt="Faizan Shaikh" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/1a1a1a/10b981?text=Faizan+Shaikh'">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decoration Code Block -->
+         <div class="absolute right-10 bottom-10 hidden lg:block opacity-10 font-mono text-xs text-green-500 select-none pointer-events-none">
+            <pre>
+const init = () => {
+  identity.load('Faizan');
+  security.check();
+  return true;
+}
+            </pre>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-cyber-dark border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-10">
+                <span class="text-cyber-accent font-mono text-2xl">01.</span>
+                <h2 class="text-3xl font-bold text-white glitch-hover">Who I Am</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6 text-gray-400 leading-relaxed">
+                    <p>
+                        I’m <span class="text-white">Faizan Shaikh</span>, a Computer Science undergraduate focused on cybersecurity, intelligent systems, and building purposeful digital products.
+                    </p>
+                    <p>
+                        My work combines hands-on development with a deep curiosity about how systems behave, scale, and stay secure in real-world environments. I enjoy designing software that is not just functional, but reliable, thoughtful, and built with long-term impact in mind.
+                    </p>
+                    <p>
+                        From AI-powered productivity tools to system-level security exploration, I approach every project with discipline, clarity, and a builder’s mindset. For me, technology isn’t about trends — it’s about <span class="text-cyber-accent">creating systems that genuinely improve how people work and think</span>.
+                    </p>
+                </div>
+                <div class="bg-cyber-black p-6 border border-gray-800 rounded-lg font-mono text-sm relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-cyber-accent opacity-50"></div>
+                    <h3 class="text-white mb-4 border-b border-gray-800 pb-2">// identity: Faizan</h3>
+                    <ul class="space-y-3 text-gray-500">
+                        <li class="flex justify-between">
+                            <span>Status:</span>
+                            <span class="text-green-500">Online & Building</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Role:</span>
+                            <span class="text-gray-300">CS Undergraduate</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Focus:</span>
+                            <span class="text-cyber-accent">Secure Systems</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Location:</span>
+                            <span class="text-gray-300">Classified</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="text-cyber-accent font-mono text-2xl">02.</span>
+                <h2 class="text-3xl font-bold text-white glitch-hover">Technical Arsenal</h2>
+            </div>
+
+            <!-- Changed to 2 columns for a balanced 2x2 grid -->
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <!-- Skill Card 1: Security Toolkit -->
+                <div class="tech-card bg-cyber-gray p-6 rounded-sm">
+                    <div class="text-cyber-accent mb-4">
+                        <i data-lucide="shield-alert" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Security Toolkit</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Reconnaissance</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Burp Suite</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Nmap</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Wireshark</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2: Defensive Operations -->
+                <div class="tech-card bg-cyber-gray p-6 rounded-sm">
+                    <div class="text-cyber-accent mb-4">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Defensive Operations</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">SIEM & Log Analysis</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Incident Response</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Security Monitoring</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3: Engineering Core -->
+                <div class="tech-card bg-cyber-gray p-6 rounded-sm">
+                    <div class="text-cyber-accent mb-4">
+                        <i data-lucide="cpu" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Engineering Core</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">JavaScript (ES6+)</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">HTML5 & CSS3</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">React & Next.js</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Python & Bash</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">WebRTC & Sockets</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4: Infra & AI -->
+                <div class="tech-card bg-cyber-gray p-6 rounded-sm">
+                    <div class="text-cyber-accent mb-4">
+                        <i data-lucide="bot" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Infra & AI</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Docker</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">GenAI Integration</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Linux Hardening</span>
+                        <span class="px-2 py-1 bg-cyber-black text-xs text-gray-300 border border-gray-700 rounded">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline / Experience -->
+    <section class="py-20 bg-cyber-dark border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 font-mono">My Journey</h2>
+            
+            <div class="relative border-l border-gray-800 ml-4 space-y-12">
+                <!-- Timeline Item 1: 2026 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-600 group-hover:bg-cyber-accent transition-colors"></div>
+                    <span class="text-xs font-mono text-cyber-accent">2026</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Blue Team & SOC Focus</h3>
+                    <p class="text-gray-400 mt-2 text-sm leading-relaxed">
+                        Currently transitioning into a defensive security role. Deepening expertise in 
+                        <span class="text-gray-300">Log Analysis, SIEM tools, and Threat Detection</span>.
+                        My goal is to become a security professional who understands systems both as a developer and a defender.
+                    </p>
+                </div>
+
+                <!-- Timeline Item 2: 2025 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-600 group-hover:bg-cyber-accent transition-colors"></div>
+                    <span class="text-xs font-mono text-cyber-accent">2025</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Internships & Engineering Craft</h3>
+                    <p class="text-gray-400 mt-2 text-sm leading-relaxed">
+                        A defining year of execution. Completed <span class="text-gray-300">three internships</span> across Frontend, AI & Sustainability, and Cybersecurity with GenAI. 
+                        Fully embraced the "Builder Mindset"—treating technology not just as a skill, but as a craft focused on reliability and impact.
+                    </p>
+                </div>
+
+                <!-- Timeline Item 3: 2024 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-600 group-hover:bg-cyber-accent transition-colors"></div>
+                    <span class="text-xs font-mono text-cyber-accent">2024</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Architecture & Security Roots</h3>
+                    <p class="text-gray-400 mt-2 text-sm leading-relaxed">
+                        Shifted from "just coding" to understanding <span class="text-gray-300">System Architecture</span>. 
+                        Developed a deep interest in cybersecurity by studying how fragile systems can be, focusing on authentication, access control, and real-world breach analysis.
+                    </p>
+                </div>
+
+                <!-- Timeline Item 4: 2023 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-gray-600 group-hover:bg-cyber-accent transition-colors"></div>
+                    <span class="text-xs font-mono text-cyber-accent">2023</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Web Development Foundations</h3>
+                    <p class="text-gray-400 mt-2 text-sm leading-relaxed">
+                        The start of the serious journey. Focused on clean code practices, UI logic, and understanding scalable web applications. 
+                        This was the year I moved from curiosity to <span class="text-cyber-accent">consistency</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="text-cyber-accent font-mono text-2xl">03.</span>
+                <h2 class="text-3xl font-bold text-white glitch-hover">Featured Projects</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1: FocusFlow -->
+                <div class="bg-cyber-gray border border-gray-800 rounded-lg p-8 hover:border-cyber-accent/50 transition-colors group">
+                    <!-- Project Image Slot -->
+                    <div class="w-full h-48 bg-black mb-6 rounded border border-gray-700 overflow-hidden relative">
+                        <img src="FocusFlow.jpeg" alt="FocusFlow Dashboard" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" onerror="this.src='https://placehold.co/600x400/1a1a1a/10b981?text=FocusFlow+OS'">
+                    </div>
+
+                    <div class="flex justify-between items-start mb-6">
+                        <i data-lucide="layout-dashboard" class="text-cyber-accent w-8 h-8"></i>
+                        <div class="flex gap-4 text-gray-400">
+                            <a href="https://github.com/jaan2005/FocusFlow" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            <a href="https://github.com/jaan2005?tab=repositories" target="_blank" class="hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">FocusFlow OS</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        An all-in-one AI productivity dashboard designed to optimize student workflows. Features intelligent study scheduling, habit tracking, and a context-aware chat assistant (Mini ChatGPT).
+                    </p>
+                    <ul class="flex gap-3 text-xs font-mono text-gray-500">
+                        <li>React</li>
+                        <li>OpenAI API</li>
+                        <li>Node.js</li>
+                        <li>Tailwind</li>
+                    </ul>
+                </div>
+
+                <!-- Project 2: WebDrop -->
+                <div class="bg-cyber-gray border border-gray-800 rounded-lg p-8 hover:border-cyber-accent/50 transition-colors group">
+                     <!-- Project Image Slot -->
+                    <div class="w-full h-48 bg-black mb-6 rounded border border-gray-700 overflow-hidden relative">
+                        <img src="Webdrop.jpeg" alt="WebDrop UI" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" onerror="this.src='https://placehold.co/600x400/1a1a1a/10b981?text=WebDrop'">
+                    </div>
+
+                    <div class="flex justify-between items-start mb-6">
+                        <i data-lucide="share-2" class="text-cyber-accent w-8 h-8"></i>
+                        <div class="flex gap-4 text-gray-400">
+                            <a href="https://github.com/jaan2005/WebDrop---P2P-File-Transfer" target="_blank" class="hover:text-white"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            <a href="https://github.com/jaan2005?tab=repositories" target="_blank" class="hover:text-white"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyber-accent transition-colors">WebDrop</h3>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        A seamless Peer-to-Peer file transfer tool powered by WebRTC. Enables instant, secure file sharing between devices without server-side storage. Simple, private, and fast.
+                    </p>
+                    <ul class="flex gap-3 text-xs font-mono text-gray-500">
+                        <li>WebRTC</li>
+                        <li>Socket.io</li>
+                        <li>Node.js</li>
+                        <li>HTML5</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://github.com/jaan2005?tab=repositories" target="_blank" class="inline-block border-b border-cyber-accent text-cyber-accent pb-1 hover:text-white hover:border-white transition-colors font-mono">View Full Project Archive -></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-cyber-dark border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="text-cyber-accent font-mono text-2xl">04.</span>
+                <h2 class="text-3xl font-bold text-white glitch-hover">Certifications & Credentials</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Cert Category 1: Enterprise Simulations -->
+                <div class="tech-card bg-cyber-black p-6 rounded-sm border-t-2 border-t-cyber-accent">
+                    <h3 class="text-lg font-bold text-white mb-4 font-mono flex items-center gap-2">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-cyber-accent"></i> Job Simulations
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Mastercard</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Cybersecurity Job Simulation</div>
+                            <div class="text-xs text-gray-500 mt-1">Phishing Analysis & Simulation</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Tata</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Cybersecurity Analyst</div>
+                            <div class="text-xs text-gray-500 mt-1">IAM Strategy & Access Control</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Deloitte</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Cyber Job Simulation</div>
+                            <div class="text-xs text-gray-500 mt-1">GRC & Cyber Strategy</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Cert Category 2: Offensive & Web Ops -->
+                <div class="tech-card bg-cyber-black p-6 rounded-sm border-t-2 border-t-red-500">
+                    <h3 class="text-lg font-bold text-white mb-4 font-mono flex items-center gap-2">
+                        <i data-lucide="sword" class="w-5 h-5 text-red-500"></i> Offensive & Web
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Ethical Hacking</div>
+                        </li>
+                         <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Kali Linux Fundamentals</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Phishing Attacks</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Threats to Websites</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Jan 2026</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Browser Attacks Protection</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Cert Category 3: Network & System Defense -->
+                <div class="tech-card bg-cyber-black p-6 rounded-sm border-t-2 border-t-blue-500">
+                    <h3 class="text-lg font-bold text-white mb-4 font-mono flex items-center gap-2">
+                        <i data-lucide="shield" class="w-5 h-5 text-blue-500"></i> Net & Sys Defense
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Wireshark Network Monitoring</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Cryptography</div>
+                        </li>
+                         <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Dec 2025</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Intro to Cyber Security</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Jan 2026</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Securing Android Devices</div>
+                        </li>
+                        <li class="border-b border-gray-800 pb-3 last:border-0 last:pb-0">
+                            <div class="flex justify-between text-xs text-gray-500 font-mono mb-1">
+                                <span>Vodafone Idea</span>
+                                <span>Jan 2026</span>
+                            </div>
+                            <div class="font-bold text-gray-200 text-sm">Intro to System Security</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="font-mono text-cyber-accent mb-4">05. What's Next?</div>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+            <p class="text-gray-400 mb-10 text-lg">
+                I’m currently seeking opportunities in <span class="text-white">Blue Team operations</span>, <span class="text-white">SOC analysis</span>, and secure systems environments where I can contribute to threat detection, monitoring, and defensive security practices.
+                <br class="hidden md:block" />
+                If you're building resilient systems or strengthening security operations, I’d be glad to connect.
+            </p>
+            
+            <!-- Email Display -->
+            <div class="flex flex-col items-center justify-center mb-12">
+                <div class="flex items-center gap-2 text-gray-300 mb-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span class="text-xl">Email</span>
+                </div>
+                <a href="mailto:faizanshaikh250805@gmail.com" class="text-xl md:text-3xl font-bold text-cyber-accent hover:text-white transition-colors tracking-tight">
+                    faizanshaikh250805@gmail.com
+                </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-8">
+                <a href="https://github.com/jaan2005" target="_blank" class="text-gray-400 hover:text-cyber-accent transition-colors transform hover:scale-110">
+                    <i data-lucide="github" class="w-8 h-8"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/faizan-shaikh-71508a293" target="_blank" class="text-gray-400 hover:text-cyber-accent transition-colors transform hover:scale-110">
+                    <i data-lucide="linkedin" class="w-8 h-8"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-cyber-black border-t border-gray-900 text-center font-mono text-xs text-gray-500">
+        <p class="mb-2">Designed & Built by Faizan Shaikh</p>
+        <p class="opacity-50">© 2026 All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Typewriter Effect
+        const textElement = document.getElementById('typewriter');
+        const phrases = [
+            "Cybersecurity Engineer",
+            "Analyzing Threats...",
+            "Securing Systems...",
+            "Breaking Barriers..."
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500; // Pause before new phrase
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typewriter on load
+        document.addEventListener('DOMContentLoaded', type);
+
+    </script>
+</body>
+</html>
